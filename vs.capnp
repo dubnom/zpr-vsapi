@@ -340,6 +340,10 @@ interface VSHandle {
   visaRequestById   @6 (req :List(UInt64)) -> (res :Result(List(Visa)));
 
   visaIdsRequest    @7 () -> (res :Result(List(UInt64)));
+
+  # Report one locally established policy peering. The service treats an edge as
+  # live only after both endpoint Nodes report the same link ID and peer pair.
+  reportLinkStatus  @8 (linkId :Text, peerZprAddr :IpAddr, isUp :Bool, generation :UInt64) -> (res :OkOrError);
 }
 
 struct OkOrError {
